@@ -1,0 +1,343 @@
+/* ---------- Hero ---------- */
+
+.hero {
+  position: relative;
+  padding: clamp(3rem, 8vw, 6rem) 0 clamp(4rem, 9vw, 7rem);
+  overflow: hidden;
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  align-items: center;
+  gap: clamp(2.5rem, 6vw, 5rem);
+}
+
+.heroCopy {
+  display: grid;
+  gap: 1.75rem;
+}
+
+.heroTitle {
+  font-size: clamp(3rem, 7.4vw, 6.2rem);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  color: var(--navy-800);
+}
+
+.heroTitle :global(.accent) {
+  display: block;
+}
+
+.heroLead {
+  max-width: 34rem;
+  font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+  color: var(--ink-2);
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.heroDrawing {
+  width: 100%;
+  max-width: 540px;
+  justify-self: end;
+}
+
+/* ---------- Foundation band ---------- */
+
+.foundation {
+  margin-top: calc(var(--merlon) * -0.75);
+  position: relative;
+}
+
+.foundationWall {
+  padding: clamp(2.25rem, 5vw, 3.25rem) 0;
+  background: var(--navy-800);
+  color: var(--white);
+}
+
+.foundationGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0 auto;
+}
+
+.foundationItem {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  gap: 0.35rem;
+  padding: 0.25rem 1.75rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.foundationItem:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+
+.foundationItem dd {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 5vw, 3.75rem);
+  font-weight: 350;
+  line-height: 1;
+  color: var(--white);
+}
+
+.foundationItem dt {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+/* ---------- Sections ---------- */
+
+.section {
+  padding: clamp(5rem, 11vw, 8.5rem) 0;
+}
+
+.apps {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.apps > * {
+  display: flex;
+}
+
+/* ---------- Principles ---------- */
+
+.principlesSection {
+  position: relative;
+}
+
+.principles {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.principle {
+  display: grid;
+  align-content: start;
+  gap: 1rem;
+  padding: 2.25rem 1.75rem 2.5rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.principle:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+
+.principle:last-child {
+  padding-right: 0;
+}
+
+.principleNo {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  color: var(--blue-bright);
+}
+
+.principleIcon {
+  width: 34px;
+  height: 34px;
+  margin: 0.5rem 0;
+  color: var(--white);
+}
+
+.principle h3 {
+  font-size: 1.55rem;
+}
+
+.principle p {
+  font-size: 0.97rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ---------- Architect ---------- */
+
+.architect {
+  background: var(--paper);
+}
+
+.architectGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: clamp(2.5rem, 6vw, 5.5rem);
+  align-items: start;
+}
+
+.architectCopy {
+  display: grid;
+  gap: 1.25rem;
+  max-width: 38rem;
+  margin-top: -1.5rem;
+  font-size: 1.06rem;
+  color: var(--ink-2);
+}
+
+.architectCopy strong {
+  color: var(--navy-800);
+}
+
+.stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.stack li {
+  padding: 0.4rem 0.8rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  color: var(--navy-800);
+}
+
+.contactCard {
+  position: relative;
+  display: grid;
+  gap: 1rem;
+  padding: clamp(1.75rem, 4vw, 2.5rem);
+  background: var(--white);
+  border: 1px solid var(--navy-800);
+  box-shadow: 10px 10px 0 var(--blue-pale);
+}
+
+.contactLabel {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+
+.contactCard h3 {
+  font-size: 2rem;
+  color: var(--navy-800);
+}
+
+.contactCard p {
+  margin-bottom: 0.5rem;
+  color: var(--ink-2);
+}
+
+.contactRow {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-top: 1px solid var(--line);
+  color: var(--navy-800);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.contactRow svg {
+  width: 20px;
+  height: 20px;
+  color: var(--blue);
+}
+
+.contactRow svg:last-child {
+  width: 16px;
+  height: 16px;
+  color: var(--ink-3);
+  transition: transform 0.25s var(--ease);
+}
+
+.contactRow:hover svg:last-child {
+  transform: translate(2px, -2px);
+  color: var(--blue);
+}
+
+.contactRow span {
+  display: grid;
+  font-weight: 600;
+}
+
+.contactRow small {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1024px) {
+  .principles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .principle {
+    padding: 2rem 1.5rem 2rem 0;
+    border-left: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .principle:nth-child(even) {
+    padding: 2rem 0 2rem 1.5rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+@media (max-width: 960px) {
+  .heroGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .heroDrawing {
+    justify-self: center;
+  }
+
+  .apps,
+  .architectGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .foundationGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 2rem;
+  }
+
+  .foundationItem:nth-child(3) {
+    padding-left: 0;
+    border-left: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .principles {
+    grid-template-columns: 1fr;
+  }
+
+  .principle,
+  .principle:nth-child(even) {
+    padding: 1.75rem 0;
+    border-left: 0;
+  }
+}

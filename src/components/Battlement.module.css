@@ -1,0 +1,9 @@
+.battlement {
+  height: calc(var(--merlon) * 0.75);
+  background: linear-gradient(90deg, var(--wall) 50%, transparent 50%) 0 0 / calc(var(--merlon) * 2) 100% repeat-x;
+  background-position-x: calc(50% + var(--merlon) / 2);
+}
+
+.battlement[data-edge='bottom'] {
+  transform: scaleY(-1);
+}

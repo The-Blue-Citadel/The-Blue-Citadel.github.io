@@ -1,0 +1,30 @@
+.icon {
+  position: relative;
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  overflow: hidden;
+  background: var(--white);
+  box-shadow:
+    0 0 0 1px var(--line),
+    0 10px 24px -12px rgba(8, 38, 79, 0.45);
+}
+
+.icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* The BLUE PDF artwork carries generous white padding. */
+.icon:not([data-dark]) img {
+  transform: scale(1.45);
+}
+
+.icon[data-dark] {
+  background: #0b2049;
+}
+
+.icon[data-dark] img {
+  transform: scale(1.08);
+}

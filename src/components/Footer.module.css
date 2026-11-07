@@ -1,0 +1,131 @@
+.footer {
+  margin-top: auto;
+}
+
+.wall {
+  padding: clamp(3.5rem, 8vw, 5.5rem) 0 2rem;
+  background: var(--navy-950);
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) repeat(3, minmax(0, 1fr));
+  gap: 3rem;
+}
+
+.brand p {
+  max-width: 22rem;
+  margin: 1.5rem 0;
+  font-size: 0.95rem;
+}
+
+.brandLink {
+  display: inline-flex;
+  text-decoration: none;
+}
+
+.social {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.social a {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: var(--radius);
+  color: var(--white);
+  transition:
+    background-color 0.2s var(--ease),
+    border-color 0.2s var(--ease);
+}
+
+.social a:hover {
+  background: var(--blue);
+  border-color: var(--blue);
+}
+
+.social svg {
+  width: 18px;
+  height: 18px;
+}
+
+.column h2 {
+  margin-bottom: 1.1rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--blue-bright);
+}
+
+.column ul {
+  display: grid;
+  gap: 0.6rem;
+  padding: 0;
+  list-style: none;
+}
+
+.column a {
+  font-size: 0.94rem;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  transition: color 0.2s var(--ease);
+}
+
+.column a:hover {
+  color: var(--white);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.base {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: clamp(3rem, 7vw, 4.5rem);
+  padding-top: 1.5rem;
+  font-size: 0.82rem;
+}
+
+.base::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: var(--gutter);
+  right: var(--gutter);
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.coords {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+@media (max-width: 960px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .brand {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 2.25rem;
+  }
+}

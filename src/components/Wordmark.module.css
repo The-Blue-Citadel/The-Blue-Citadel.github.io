@@ -1,0 +1,49 @@
+.wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.mark {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+}
+
+.mark img {
+  width: 40px;
+  height: 40px;
+}
+
+.wordmark[data-tone='dark'] .mark {
+  background: var(--white);
+  border-radius: var(--radius);
+}
+
+.wordmark[data-tone='dark'] .mark img {
+  width: 32px;
+  height: 32px;
+}
+
+.text {
+  font-family: var(--font-sans);
+  font-size: 0.86rem;
+  font-weight: 650;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--navy-800);
+}
+
+.blue {
+  color: var(--blue);
+}
+
+.wordmark[data-tone='dark'] .text {
+  color: var(--white);
+}
+
+.wordmark[data-tone='dark'] .blue {
+  color: var(--blue-bright);
+}
