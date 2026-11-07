@@ -1,74 +1,295 @@
 .register {
+  --pad: 1.75rem;
+  --caret: 18px;
+  --icon: 40px;
+  --gap: 0.9rem;
+  /* x position of the tree trunk: centred under the folder's app icon */
+  --trunk: calc(var(--pad) + var(--caret) + var(--gap) + var(--icon) / 2);
+
   background: var(--white);
   border: 1px solid var(--navy-800);
   box-shadow: 10px 10px 0 var(--blue-pale);
 }
 
-.head,
-.row {
-  display: grid;
-  grid-template-columns: 80px minmax(0, 1.2fr) minmax(0, 1.4fr) minmax(0, 1fr) 40px;
+.bar {
+  display: flex;
   align-items: center;
-  gap: 1.5rem;
-  padding: 0 1.75rem;
-}
-
-.head {
+  justify-content: space-between;
+  gap: 1rem;
   height: 48px;
+  padding: 0 var(--pad);
   background: var(--navy-800);
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.6);
   font-family: var(--font-mono);
   font-size: 0.68rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
 
-.rows {
+.bar strong {
+  color: var(--white);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: none;
+}
+
+.columns,
+.folderRow,
+.fileRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 160px 170px 40px;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0 var(--pad);
+}
+
+.columns {
+  height: 40px;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+  color: var(--ink-3);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.columns span:first-child {
+  padding-left: calc(var(--caret) + var(--gap));
+}
+
+.tree,
+.files {
   padding: 0;
   margin: 0;
   list-style: none;
 }
 
-.rows li + li {
+.tree > li + li {
   border-top: 1px solid var(--line);
 }
 
-.row {
-  min-height: 84px;
+/* Folder */
+
+.folder {
+  interpolate-size: allow-keywords;
+}
+
+.folder::details-content {
+  block-size: 0;
+  overflow: hidden;
+  transition:
+    block-size 0.4s var(--ease),
+    content-visibility 0.4s allow-discrete;
+}
+
+.folder[open]::details-content {
+  block-size: auto;
+}
+
+.folderRow {
+  position: relative;
+  min-height: 88px;
   color: var(--ink);
-  text-decoration: none;
+  cursor: pointer;
+  list-style: none;
   transition: background-color 0.25s var(--ease);
 }
 
-.row:hover {
+.folderRow::-webkit-details-marker {
+  display: none;
+}
+
+.folderRow:hover,
+.folder[open] > .folderRow {
   background: var(--blue-wash);
 }
 
-.no {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+.folderRow:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: -2px;
+}
+
+.folder[open] > .folderRow {
+  box-shadow: inset 3px 0 0 var(--blue);
+}
+
+/* trunk segment from the bottom of the app icon to the first file */
+.folder[open] > .folderRow::after {
+  content: '';
+  position: absolute;
+  left: var(--trunk);
+  top: calc(50% + var(--icon) / 2 + 4px);
+  bottom: 0;
+  border-left: 1px dashed var(--blue);
+  opacity: 0.55;
+}
+
+.name {
+  display: flex;
+  align-items: center;
+  gap: var(--gap);
+  min-width: 0;
+}
+
+.caret {
+  flex: none;
+  width: var(--caret);
+  height: var(--caret);
+  color: var(--ink-3);
+  transition:
+    transform 0.3s var(--ease),
+    color 0.25s var(--ease);
+}
+
+.folder[open] > .folderRow .caret {
+  transform: rotate(90deg);
   color: var(--blue);
 }
 
-.app {
+.label {
   display: flex;
-  align-items: center;
-  gap: 0.85rem;
-  font-weight: 650;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.label strong {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.2;
   color: var(--navy-800);
 }
 
-.doc {
-  font-family: var(--font-display);
-  font-size: 1.2rem;
-  color: var(--navy-800);
+.label small {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  overflow: hidden;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--ink-3);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.label small svg {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  color: var(--blue);
+}
+
+.openIcon,
+.folder[open] .closedIcon {
+  display: none;
+}
+
+.folder[open] .openIcon {
+  display: block;
+}
+
+.contents {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-2);
 }
 
 .date {
   font-family: var(--font-mono);
   font-size: 0.8rem;
+  color: var(--ink-3);
+}
+
+/* Files */
+
+.files {
+  padding-bottom: 0.75rem;
+  background: var(--blue-wash);
+  box-shadow: inset 3px 0 0 var(--blue);
+}
+
+.files li {
+  position: relative;
+}
+
+.files li::before,
+.files li::after {
+  content: '';
+  position: absolute;
+  left: var(--trunk);
+  opacity: 0.55;
+}
+
+.files li::before {
+  top: 0;
+  bottom: 0;
+  border-left: 1px dashed var(--blue);
+}
+
+.files li:last-child::before {
+  bottom: 50%;
+}
+
+.files li::after {
+  top: 50%;
+  width: 22px;
+  border-top: 1px dashed var(--blue);
+}
+
+.folder[open] .files li {
+  animation: file-in 0.45s var(--ease) both;
+}
+
+.folder[open] .files li:nth-child(2) {
+  animation-delay: 70ms;
+}
+
+.folder[open] .files li:nth-child(3) {
+  animation-delay: 140ms;
+}
+
+@keyframes file-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
+.fileRow {
+  min-height: 68px;
+  padding-left: calc(var(--trunk) + 30px);
+  color: var(--ink);
+  text-decoration: none;
+  transition: background-color 0.25s var(--ease);
+}
+
+.fileRow:hover {
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.fileRow:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: -2px;
+}
+
+.fileRow .label strong {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.fileIcon {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  color: var(--blue);
+}
+
+.fileRow .contents {
   color: var(--ink-3);
 }
 
@@ -80,43 +301,64 @@
   transition: transform 0.25s var(--ease);
 }
 
-.row:hover .arrow {
+.fileRow:hover .arrow {
   transform: translateX(4px);
 }
 
 @media (max-width: 760px) {
-  .head {
+  .register {
+    --pad: 1rem;
+    --icon: 36px;
+    --gap: 0.7rem;
+  }
+
+  .bar span:last-child,
+  .columns,
+  .contents {
     display: none;
   }
 
-  .row {
+  .folderRow {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 80px;
+  }
+
+  .folderRow .date {
+    display: none;
+  }
+
+  .fileRow {
     grid-template-columns: minmax(0, 1fr) auto;
     grid-template-areas:
-      'no arrow'
-      'app arrow'
-      'doc arrow'
+      'name arrow'
       'date arrow';
-    gap: 0.4rem;
-    padding: 1.25rem;
+    row-gap: 0.15rem;
+    padding-top: 0.85rem;
+    padding-bottom: 0.85rem;
+    padding-left: calc(var(--trunk) + 26px);
   }
 
-  .no {
-    grid-area: no;
+  .fileRow .name {
+    grid-area: name;
   }
 
-  .app {
-    grid-area: app;
-  }
-
-  .doc {
-    grid-area: doc;
-  }
-
-  .date {
+  .fileRow .date {
     grid-area: date;
+    padding-left: calc(22px + var(--gap));
+    font-size: 0.72rem;
   }
 
   .arrow {
     grid-area: arrow;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .folder::details-content {
+    transition: none;
+  }
+
+  .folder[open] .files li {
+    animation: none;
   }
 }

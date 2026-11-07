@@ -46,13 +46,13 @@ export function Footer() {
               <li>
                 <Link to="/privacy">Privacy Center</Link>
               </li>
-              {policies.map((policy) => (
-                <li key={policy.id}>
-                  <Link to={policy.path}>
-                    {getApp(policy.appId).name} · {policy.kind === 'privacy' ? 'Privacy' : 'Account deletion'}
-                  </Link>
-                </li>
-              ))}
+              {policies
+                .filter((policy) => policy.kind === 'privacy')
+                .map((policy) => (
+                  <li key={policy.id}>
+                    <Link to={policy.path}>{getApp(policy.appId).name} · Privacy</Link>
+                  </li>
+                ))}
             </ul>
           </nav>
 
