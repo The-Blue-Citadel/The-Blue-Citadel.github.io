@@ -1,5 +1,6 @@
 .sheet {
   position: relative;
+  container-type: inline-size;
   background-color: var(--white);
   background-image:
     linear-gradient(rgba(8, 104, 206, 0.045) 1px, transparent 1px),
@@ -125,17 +126,29 @@
   white-space: nowrap;
 }
 
-@media (max-width: 520px) {
+.titleBlock div {
+  min-width: 0;
+}
+
+@container (max-width: 420px) {
   .titleBlock {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.5fr 1.4fr 0.8fr;
+  }
+
+  .titleBlock div {
+    padding: 0.5rem 0.6rem;
   }
 
   .titleBlock div:nth-child(3) {
-    border-left: 0;
+    display: none;
   }
 
-  .titleBlock div:nth-child(n + 3) {
-    border-top: 1px solid var(--line-strong);
+  .titleBlock strong {
+    font-size: 0.72rem;
+  }
+
+  .titleBlock span {
+    font-size: 0.55rem;
   }
 }
 

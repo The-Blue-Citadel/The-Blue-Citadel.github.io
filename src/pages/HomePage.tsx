@@ -1,8 +1,7 @@
-import { ArrowRight, ArrowUpRight, Ban, FileText, KeyRound, Mail, Smartphone } from 'lucide-react';
-import { Link } from 'react-router';
+import { ArrowUpRight, Ban, FileText, KeyRound, Mail, Smartphone } from 'lucide-react';
 import { AppCard } from '../components/AppCard';
 import { Battlement } from '../components/Battlement';
-import { CitadelDrawing } from '../components/CitadelDrawing';
+import { Hero } from '../components/Hero';
 import { GithubIcon } from '../components/icons';
 import { PolicyRegister } from '../components/PolicyRegister';
 import { Reveal } from '../components/Reveal';
@@ -46,38 +45,7 @@ const stack = ['Flutter', 'Kotlin', 'C++ / JNI', 'MuPDF', 'SQLite', 'Firebase'];
 export function HomePage() {
   return (
     <>
-      <section className={`surface-paper ${styles.hero}`}>
-        <div className={`container ${styles.heroGrid}`}>
-          <div className={styles.heroCopy}>
-            <Reveal>
-              <span className="eyebrow">Independent software studio · Est. {site.founded}</span>
-            </Reveal>
-            <Reveal delay={80}>
-              <h1 className={styles.heroTitle}>
-                Software built <span className="accent">like a fortress.</span>
-              </h1>
-            </Reveal>
-            <Reveal delay={160}>
-              <p className={styles.heroLead}>
-                {site.name} designs calm, private Android apps. Fast native engineering on the inside, thick walls around
-                your data on the outside, and nothing that leaves your phone without a reason.
-              </p>
-            </Reveal>
-            <Reveal delay={240} className={styles.heroActions}>
-              <Link to="/#apps" className="btn btn-primary">
-                Explore the apps <ArrowRight aria-hidden />
-              </Link>
-              <Link to="/privacy" className="btn btn-outline">
-                Privacy Center
-              </Link>
-            </Reveal>
-          </div>
-
-          <Reveal delay={120} className={styles.heroDrawing}>
-            <CitadelDrawing />
-          </Reveal>
-        </div>
-      </section>
+      <Hero />
 
       <section className={styles.foundation} aria-label="At a glance">
         <Battlement color="var(--navy-800)" />
