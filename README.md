@@ -8,6 +8,8 @@ Built with React 19, React Router 7, TypeScript and Vite. Every route is prerend
 HTML at build time, so policies are readable by Google Play reviewers and crawlers without
 JavaScript, and the site can be hosted on any static host.
 
+Live at **https://the-blue-citadel.github.io/**.
+
 ## Pages
 
 | Path                                 | Purpose                                     |
@@ -32,7 +34,8 @@ npm run preview    # serve dist/
 and Open Graph URLs:
 
 ```bash
-BASE_PATH=/website/ SITE_URL=https://the-blue-citadel.github.io/website npm run build
+SITE_URL=https://the-blue-citadel.github.io npm run build
+BASE_PATH=/some-path/ SITE_URL=https://example.com/some-path npm run build   # served from a sub-path
 ```
 
 ## Deploy
@@ -41,13 +44,21 @@ Pushing to `main` runs `.github/workflows/deploy.yml`, which builds and publishe
 Enable it once under **Settings → Pages → Source: GitHub Actions**. The base path is detected
 automatically, including after a custom domain is added.
 
+URLs for Play Console (keep the trailing slash so GitHub Pages serves them without a redirect):
+
+| Field                               | URL                                                                |
+| ----------------------------------- | ------------------------------------------------------------------ |
+| BLUE PDF privacy policy             | https://the-blue-citadel.github.io/privacy/blue-pdf/               |
+| BluePocket privacy policy           | https://the-blue-citadel.github.io/privacy/bluepocket/             |
+| BluePocket delete account (Data safety) | https://the-blue-citadel.github.io/privacy/bluepocket/delete-account/ |
+
 ## Editing content
 
 - **Brand details** (email, GitHub): `src/content/site.ts`
 - **Apps** (copy, features, specs, Play links): `src/content/apps.ts`
 - **Policies**: one file per document in `src/content/policies/`. Update the `updated` date
   whenever the text changes. New documents are added to `policies` in `index.ts`, which creates
-  their route, register entry and footer link.
+  their route and files them in their app's folder in the policy index.
 
 Brand artwork lives in `the-blue-citadel-exact-logo-package/`; the files used by the site are
 copied into `public/` and `src/assets/brand/`.

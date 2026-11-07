@@ -32,7 +32,7 @@ jobs:
 
       - run: npm run build
         env:
-          # "/website" on the-blue-citadel.github.io, empty once a custom domain is set.
+          # Empty for the-blue-citadel.github.io and custom domains, "/<repo>" for project sites.
           BASE_PATH: ${{ steps.pages.outputs.base_path }}
           SITE_URL: ${{ steps.pages.outputs.base_url }}
 
