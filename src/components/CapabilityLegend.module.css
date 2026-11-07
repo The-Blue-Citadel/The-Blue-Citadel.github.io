@@ -1,0 +1,372 @@
+.legend {
+  --leader: clamp(2rem, 4vw, 3.5rem);
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: var(--leader);
+  align-items: stretch;
+}
+
+/* ---------- Index ---------- */
+
+.indexHead {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0 0.85rem;
+  border-bottom: 1px solid var(--navy-800);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.item {
+  position: relative;
+  border-bottom: 1px solid var(--line);
+}
+
+.tab {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2.75rem minmax(0, 1fr) 20px;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 1.05rem 1.25rem 1.05rem 1rem;
+  background: none;
+  border: 0;
+  text-align: left;
+  cursor: pointer;
+  opacity: 0.72;
+  transition:
+    opacity 0.25s var(--ease),
+    background-color 0.25s var(--ease);
+}
+
+.tab::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--blue);
+  transform: scaleY(0);
+  transition: transform 0.3s var(--ease);
+}
+
+.tab:hover,
+.item[data-active] .tab {
+  opacity: 1;
+}
+
+.item[data-active] .tab {
+  background: var(--white);
+}
+
+.item[data-active] .tab::before {
+  transform: scaleY(1);
+}
+
+/* Leader line from the selected key to the detail sheet. */
+.item[data-active]::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  width: var(--leader);
+  border-top: 1px dashed var(--blue);
+}
+
+.item[data-active]::before {
+  content: '';
+  position: absolute;
+  top: calc(50% - 3px);
+  left: calc(100% - 3px);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--blue);
+  z-index: 1;
+}
+
+.no {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+}
+
+.item[data-active] .no {
+  color: var(--blue);
+}
+
+.label {
+  display: grid;
+  gap: 0.1rem;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  line-height: 1.2;
+  color: var(--navy-800);
+}
+
+.summary {
+  font-size: 0.9rem;
+  color: var(--ink-3);
+}
+
+.arrow {
+  width: 18px;
+  height: 18px;
+  color: var(--blue);
+  opacity: 0;
+  transform: translateX(-6px);
+  transition:
+    opacity 0.25s var(--ease),
+    transform 0.25s var(--ease);
+}
+
+.item[data-active] .arrow {
+  opacity: 1;
+  transform: none;
+}
+
+.inlinePoints {
+  display: none;
+}
+
+/* ---------- Detail sheet ---------- */
+
+.detail {
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border: 1px solid var(--navy-800);
+  box-shadow: 10px 10px 0 var(--blue-pale);
+}
+
+.detailHead,
+.detailFoot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.detailHead,
+.detailFoot > span {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.detailHead {
+  padding: 0.85rem 1.5rem;
+  background: var(--navy-800);
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.detailBody {
+  position: relative;
+  flex: 1;
+  display: grid;
+  align-content: start;
+  gap: 0.9rem;
+  padding: clamp(1.75rem, 3.5vw, 2.5rem);
+  overflow: hidden;
+  background-image:
+    linear-gradient(rgba(8, 104, 206, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(8, 104, 206, 0.045) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .detailBody > * {
+    animation: enter 0.45s var(--ease) both;
+  }
+
+  .detailBody > :nth-child(4) {
+    animation-delay: 40ms;
+  }
+
+  .detailBody > :nth-child(5) {
+    animation-delay: 80ms;
+  }
+
+  .detailBody > :nth-child(6) {
+    animation-delay: 120ms;
+  }
+}
+
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+.detailBody > * {
+  position: relative;
+  z-index: 1;
+}
+
+.ghost {
+  position: absolute;
+  z-index: 0;
+  right: -0.06em;
+  bottom: -0.28em;
+  font-family: var(--font-display);
+  font-size: clamp(8rem, 13vw, 11rem);
+  font-weight: 300;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--blue-pale);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Architectural detail marker: detail number over sheet reference. */
+.marker {
+  position: absolute;
+  top: clamp(1.5rem, 3vw, 2.25rem);
+  right: clamp(1.5rem, 3vw, 2.25rem);
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  width: 58px;
+  height: 58px;
+  border: 1.5px solid var(--navy-800);
+  border-radius: 50%;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  text-align: center;
+  color: var(--navy-800);
+  background: var(--white);
+}
+
+.marker span:first-child {
+  align-self: end;
+  padding-bottom: 2px;
+  font-size: 0.85rem;
+  border-bottom: 1px solid var(--navy-800);
+  margin: 0 8px;
+}
+
+.marker span:last-child {
+  padding-top: 3px;
+  font-size: 0.6rem;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+}
+
+.icon {
+  width: 42px;
+  height: 42px;
+  color: var(--blue);
+}
+
+.detailTitle {
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  color: var(--navy-800);
+}
+
+.detailSummary {
+  max-width: 26rem;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-style: italic;
+  color: var(--blue);
+}
+
+.points,
+.inlinePoints {
+  padding: 0;
+  list-style: none;
+}
+
+.points {
+  position: relative;
+  display: grid;
+  gap: 0.75rem;
+  max-width: 30rem;
+  margin-top: 0.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+}
+
+.points li,
+.inlinePoints li {
+  position: relative;
+  padding-left: 1.75rem;
+  color: var(--ink-2);
+}
+
+/* Dimension-tick bullets. */
+.points li::before,
+.inlinePoints li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.8em;
+  width: 14px;
+  height: 1px;
+  background: var(--blue);
+}
+
+.points li::after,
+.inlinePoints li::after {
+  content: '';
+  position: absolute;
+  left: 9px;
+  top: calc(0.8em - 4px);
+  width: 1px;
+  height: 9px;
+  background: var(--blue);
+  transform: rotate(45deg);
+}
+
+.detailFoot {
+  padding: 0.9rem 1.5rem;
+  border-top: 1px dashed var(--line-strong);
+  color: var(--ink-3);
+}
+
+/* ---------- Small screens: an accordion ---------- */
+
+@media (max-width: 900px) {
+  .legend {
+    grid-template-columns: 1fr;
+  }
+
+  .detail {
+    display: none;
+  }
+
+  .item[data-active]::after,
+  .item[data-active]::before {
+    display: none;
+  }
+
+  .arrow {
+    opacity: 1;
+    transform: rotate(90deg);
+    color: var(--ink-3);
+  }
+
+  .item[data-active] .arrow {
+    transform: rotate(-90deg);
+    color: var(--blue);
+  }
+
+  .item[data-active] .inlinePoints {
+    display: grid;
+    gap: 0.6rem;
+    padding: 0 1.25rem 1.25rem 4.75rem;
+    background: var(--white);
+    font-size: 0.95rem;
+  }
+}

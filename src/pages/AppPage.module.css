@@ -155,74 +155,10 @@
   border-radius: 20px;
 }
 
-/* ---------- Features ---------- */
+/* ---------- Sections ---------- */
 
 .section {
   padding: clamp(5rem, 10vw, 7.5rem) 0;
-}
-
-.features {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  padding: 0;
-  list-style: none;
-  border-top: 1px solid var(--navy-800);
-  border-left: 1px solid var(--line);
-}
-
-.feature {
-  display: grid;
-  align-content: start;
-  gap: 0.75rem;
-  padding: 2rem 1.75rem 2.25rem;
-  background: rgba(255, 255, 255, 0.6);
-  border-right: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  transition: background-color 0.3s var(--ease);
-}
-
-.feature:hover {
-  background: var(--white);
-}
-
-.featureIcon {
-  width: 30px;
-  height: 30px;
-  margin-bottom: 0.5rem;
-  color: var(--blue);
-}
-
-.feature h3 {
-  font-size: 1.45rem;
-  color: var(--navy-800);
-}
-
-.feature p {
-  color: var(--ink-2);
-  font-size: 0.97rem;
-}
-
-.featureCta {
-  display: grid;
-  align-content: end;
-  justify-items: start;
-  gap: 1rem;
-  padding: 2rem 1.75rem 2.25rem;
-  background: var(--navy-800);
-  color: var(--white);
-}
-
-.featureCta h3 {
-  font-size: 1.75rem;
-  margin-bottom: 0.5rem;
-}
-
-.ctaLabel {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--blue-bright);
 }
 
 /* ---------- Privacy ---------- */
@@ -333,10 +269,6 @@
     grid-template-columns: 1fr;
   }
 
-  .features {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   .galleryGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     max-width: 560px;
@@ -344,10 +276,6 @@
 }
 
 @media (max-width: 600px) {
-  .features {
-    grid-template-columns: 1fr;
-  }
-
   .specSheet dl div {
     grid-template-columns: 1fr;
     gap: 0.2rem;

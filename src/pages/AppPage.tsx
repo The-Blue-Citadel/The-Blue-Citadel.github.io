@@ -2,6 +2,7 @@ import { ArrowRight, ShieldCheck } from 'lucide-react';
 import { Link } from 'react-router';
 import { AppIcon } from '../components/AppIcon';
 import { Battlement } from '../components/Battlement';
+import { CapabilityLegend } from '../components/CapabilityLegend';
 import { GithubIcon } from '../components/icons';
 import { PlayButton } from '../components/PlayButton';
 import { Reveal } from '../components/Reveal';
@@ -93,21 +94,11 @@ export function AppPage({ app }: { app: AppInfo }) {
                 What {app.name} <span className="accent">does.</span>
               </>
             }
+            intro="Each capability is drawn out in detail. Move through the legend to open its sheet."
           />
-          <ul className={styles.features}>
-            {app.features.map(({ icon: Icon, title, body }, index) => (
-              <Reveal as="li" key={title} delay={(index % 3) * 80} className={styles.feature}>
-                <Icon className={styles.featureIcon} strokeWidth={1.5} aria-hidden />
-                <h3>{title}</h3>
-                <p>{body}</p>
-              </Reveal>
-            ))}
-            <Reveal as="li" delay={(app.features.length % 3) * 80} className={styles.featureCta}>
-              <span className={styles.ctaLabel}>Free on Google Play</span>
-              <h3>Ready when you are.</h3>
-              <PlayButton href={app.playUrl} appName={app.name} />
-            </Reveal>
-          </ul>
+          <Reveal>
+            <CapabilityLegend app={app} />
+          </Reveal>
         </div>
       </section>
 

@@ -1,6 +1,5 @@
 import type { LucideIcon } from 'lucide-react';
 import {
-  Camera,
   ChartColumn,
   Gauge,
   Images,
@@ -9,7 +8,6 @@ import {
   Merge,
   MessageSquareText,
   Receipt,
-  RefreshCw,
   Scissors,
   Users,
   Wallet,
@@ -27,7 +25,8 @@ export type AppId = 'blue-pdf' | 'bluepocket';
 export interface AppFeature {
   icon: LucideIcon;
   title: string;
-  body: string;
+  summary: string;
+  points: string[];
 }
 
 export interface AppSpec {
@@ -75,43 +74,51 @@ export const apps: AppInfo[] = [
     features: [
       {
         icon: Merge,
-        title: 'Merge PDF',
-        body: 'Combine any number of PDFs, including password-protected ones, keeping links and annotations.',
+        title: 'Merge',
+        summary: 'Combine any number of PDFs into one document.',
+        points: [
+          'Works with password-protected files',
+          'Links and annotations are kept',
+          'Pages are copied, never re-rendered, so quality and size are preserved',
+        ],
       },
       {
         icon: Scissors,
-        title: 'Split PDF',
-        body: 'Extract pages or ranges such as 1-3, 7, 10-12 into a new document.',
+        title: 'Split',
+        summary: 'Pull out exactly the pages you need.',
+        points: ['Type ranges such as 1-3, 7, 10-12', 'Saved as a new PDF; the original stays untouched'],
       },
       {
         icon: ListOrdered,
-        title: 'Reorder PDF',
-        body: 'Drag and rotate pages in a thumbnail grid that stays smooth on 300+ page documents.',
+        title: 'Reorder',
+        summary: 'Rearrange and rotate pages by hand.',
+        points: ['Drag pages in a thumbnail grid', 'Stays smooth on 300+ page documents', 'Rotate any page in place'],
       },
       {
         icon: Lock,
-        title: 'Protect PDF',
-        body: 'Encrypt any PDF with a password using AES-256.',
+        title: 'Protect',
+        summary: 'Lock a PDF behind a password.',
+        points: ['AES-256 encryption', 'Passwords are used once and never stored'],
       },
       {
         icon: Images,
         title: 'Image to PDF',
-        body: 'Turn JPG, PNG, GIF, BMP, TIFF, HEIC and WebP photos into a PDF, respecting camera orientation.',
-      },
-      {
-        icon: Camera,
-        title: 'Camera',
-        body: 'Capture pages, then crop, rotate or annotate them in the built-in editor before converting.',
+        summary: 'Turn photos and scans into a clean PDF.',
+        points: [
+          'JPG, PNG, GIF, BMP and TIFF directly; HEIC and WebP converted',
+          'Built-in camera with crop, rotate and annotate',
+          'Respects camera orientation',
+        ],
       },
       {
         icon: Gauge,
-        title: 'Built for speed',
-        body: 'Every operation runs in native C++ on MuPDF, off the UI thread. Pages are copied, not re-rendered, so output keeps its quality.',
-      },
-      {
-        icon: RefreshCw,
-        title: 'Real progress',
-        body: 'Large jobs report exactly where they are ("Copying page 120 of 330") and cancel instantly, cleaning up after themselves.',
+        title: 'Native speed',
+        summary: 'Heavy lifting in C++, so the app feels instant.',
+        points: [
+          'Every operation runs on MuPDF, off the UI thread',
+          'Real progress ("Copying page 120 of 330") with instant cancel',
+          'Results stream to disk, so a 100 MB merge never sits in memory',
+        ],
       },
     ],
     privacy: [
@@ -147,27 +154,48 @@ export const apps: AppInfo[] = [
       {
         icon: Wallet,
         title: 'Fast entry',
-        body: 'One sheet for Spent or Received, with a big keypad. Each payee remembers its category.',
+        summary: 'Log a payment in a couple of taps.',
+        points: [
+          'One sheet for Spent or Received, with a big keypad',
+          'Each payee remembers its category, so the next entry fills itself in',
+          'Add a note, date or receipt photo without crowding the form',
+        ],
       },
       {
         icon: Receipt,
-        title: 'Your ledger',
-        body: 'Grouped by day with a month switcher, search across payees, notes and amounts, and undo everywhere.',
+        title: 'Ledger',
+        summary: 'Every entry, grouped by day.',
+        points: [
+          'Month switcher with spent, received and net totals',
+          'Search by payee, note, receipt text or amount',
+          'Swipe to delete or open details, with undo on everything',
+        ],
       },
       {
         icon: ChartColumn,
         title: 'Analysis',
-        body: 'Week, month and year trends, category breakdowns, top payees and fair period comparisons.',
+        summary: 'See where the money actually went.',
+        points: [
+          'Week, month and year views with trend charts',
+          'Fair comparisons: a running month against the same days of the last',
+          'Category breakdown, top payees and quick insights',
+        ],
       },
       {
         icon: MessageSquareText,
-        title: 'Auto-add from bank texts',
-        body: 'Optional. New bank, card, UPI and wallet alerts become entries, parsed entirely on your phone.',
+        title: 'Bank texts',
+        summary: 'New bank alerts become entries automatically.',
+        points: [
+          'Off by default, and switched on only with your consent',
+          'Banks, cards, UPI and wallets in formats worldwide',
+          'Read on the phone as they arrive; your inbox is never opened',
+        ],
       },
       {
         icon: Users,
         title: 'Groups',
-        body: 'Split shared costs with friends. The only online feature, and only if you sign in.',
+        summary: 'Split shared costs with friends.',
+        points: ['The only online feature', 'Needs an optional Google sign-in', 'Only members can see a group'],
       },
     ],
     privacy: [
